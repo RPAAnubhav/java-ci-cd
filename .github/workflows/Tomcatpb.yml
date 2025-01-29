@@ -17,12 +17,12 @@
       service:
         name: tomcat10
         state: started
-        enabled: true  # Corrected the typo here
+        enabled: true  
 
     - name: Installing Git
       apt:
         name: git
-        state: present  # Fixed typo: you should install git, not apt
+        state: present  
 
     - name: Installing Maven
       apt:
@@ -31,19 +31,18 @@
 
     - name: Clone Git repository
       git:
-        repo: 'https://github.com/Dexterzep-Org/java-ci-cd.git'  # Changed to HTTPS URL (you can use SSH if set up)
-        dest: /POC
+        repo: 'https://github.com/Dexterzep-Org/java-ci-cd.git'  
         version: DEV
         update: yes
         clone: yes
-        force: yes  # Force a fresh clone
-
+        force: yes  
+        
     - name: Set permissions on cloned directory (optional)
       file:
         path: /POC
         owner: root
         group: root
-        mode: '0755'  # More restrictive permission
+        mode: '0755'  
 
     - name: Change directory
       command: pwd
@@ -52,7 +51,7 @@
       register: output
 
     - name: Run Maven build
-      command: mvn clean install -DskipTests  # Fixed typo in -DskipTests
+      command: mvn clean install -DskipTests  
       args:
         chdir: /POC
 
@@ -64,7 +63,7 @@
         path: /var/lib/tomcat10/webapps/sample-project-0.0.1-SNAPSHOT.war
         owner: root
         group: root
-        mode: '0644'  # More restrictive permission for the WAR file
+        mode: '0644'  
 
     - name: Restart Tomcat to deploy the WAR file
       systemd:
