@@ -15,7 +15,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-
     - name: Run Ansible playbook
       run: |
         ansible-playbook -i inventory.ini Tomcatpb.yml
