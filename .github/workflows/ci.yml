@@ -1,4 +1,4 @@
-name: CI/CD for Tomcat
+name: CI/CD for Tomcat 
 
 on:
   push:
