@@ -1,0 +1,35 @@
+name: CI/CD for Tomcat
+
+on:
+  push:
+    branches:
+      - DEV
+  pull_request:
+    branches:
+      - DEV
+
+jobs:
+  deploy:
+    runs-on: self-hosted  
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python 
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y python3-pip
+        sudo apt install -y sshpass  # If you're using SSH for Ansible
+
+    - name: Install Ansible
+      run: |
+        pip install ansible
+
+    - name: Run Ansible playbook
+      run: |
+        ansible-playbook -i inventory.ini tomcatpb.yml
