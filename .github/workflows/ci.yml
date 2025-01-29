@@ -17,4 +17,5 @@ jobs:
 
     - name: Run Ansible playbook
       run: |
-        ansible-playbook -i java-ci-cd/inventory.ini workflows/Tomcatpb.yml
+        ansible-playbook -i java-ci-cd/inventory.ini .github/workflows/Tomcatpb.yml
+
