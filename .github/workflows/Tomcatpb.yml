@@ -1,6 +1,6 @@
 ---
 - name: Tomcat setup and Deployment on ansible server
-  hosts: myhosts
+  hosts: [myhosts]
 
   tasks:
     - name: Installing Java
