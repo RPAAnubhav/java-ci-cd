@@ -50,8 +50,8 @@
     - name: Set permissions on cloned directory (optional)
       file:
         path: /POC
-        owner: root
-        group: root
+        owner: "server2"
+        group: "server2"
         mode: '0755'  
 
     - name: Change directory
