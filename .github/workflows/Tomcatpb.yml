@@ -1,0 +1,81 @@
+---
+- name: Tomcat setup and Deployment on ansible server
+  hosts: myhosts  # Refers to the group of servers in your inventory
+  become: yes  # This might be needed if you're running tasks that require elevated privileges on server2
+  tasks:
+
+    - name: Installing Java
+      apt:
+        name: default-jdk
+        state: present
+
+    - name: Installing Tomcat10
+      apt:
+        name: tomcat10
+        state: present
+
+    - name: Starting and enabling Tomcat10
+      service:
+        name: tomcat10
+        state: started
+        enabled: true  
+
+    - name: Installing Git
+      apt:
+        name: git
+        state: present  
+
+    - name: Installing Maven
+      apt:
+        name: maven
+        state: present
+        
+    - name: Ensure the destination directory exists and has proper permissions
+      file:
+        path: /git-cloned
+        state: directory
+        mode: '0755'
+        owner: "server2"  # Replace with a valid user on server2
+        group: "server2"  # Replace with a valid group on server2
+
+    - name: Clone Git repository
+      git:
+        repo: 'https://github.com/Dexterzep-Org/java-ci-cd.git' 
+        dest: '/git-cloned' 
+        version: DEV
+        update: yes
+        clone: yes
+        force: yes  
+
+    - name: Set permissions on cloned directory (optional)
+      file:
+        path: /POC
+        owner: "server2"  # Replace with a valid user on server2
+        group: "server2"  # Replace with a valid group on server2
+        mode: '0755'  
+
+    - name: Change directory
+      command: pwd
+      args:
+        chdir: /POC
+      register: output
+
+    - name: Run Maven build
+      command: mvn clean install -DskipTests  
+      args:
+        chdir: /POC
+
+    - name: Move WAR file from target to Tomcat webapps
+      command: cp /POC/target/sample-project-0.0.1-SNAPSHOT.war /var/lib/tomcat10/webapps/
+
+    - name: Ensure correct permissions on WAR file in Tomcat webapps
+      file:
+        path: /var/lib/tomcat10/webapps/sample-project-0.0.1-SNAPSHOT.war
+        owner: root
+        group: root
+        mode: '0644'  
+
+    - name: Restart Tomcat to deploy the WAR file
+      systemd:
+        name: tomcat10
+        state: restarted
