@@ -11,14 +11,24 @@ on:
 jobs:
   deploy:
     runs-on: self-hosted  
+    
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-
-    - name: Run Ansible playbook
-      run: |
-        ansible-playbook -i .github/workflows/inventory.ini .github/workflows/Tomcatpb.yml  
       
-      env:
-        ANSIBLE_HOST_KEY_CHECKING: "False"  
+    - name: Clone the Git repository 
+      run: |
+        git clone https://git@github.com:RPAAnubhav/java-ci-cd.git
+        cd /git-cloned
+
+    - name: Build with Maven
+      run: |
+        mvn clean install -DskipTests  
+
+   # - name: Run Ansible playbook
+     # run: |
+       # ansible-playbook -i .github/workflows/inventory.ini .github/workflows/Tomcatpb.yml  
+      
+      #env:
+        #ANSIBLE_HOST_KEY_CHECKING: "False"  
 
