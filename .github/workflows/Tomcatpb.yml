@@ -1,7 +1,7 @@
 ---
 - name: Tomcat setup and Deployment on ansible server
   hosts: myhosts  # Refers to the group of servers in your inventory
-  become: yes  # This might be needed if you're running tasks that require elevated privileges on server2
+  
   tasks:
 
     - name: Installing Java
