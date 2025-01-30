@@ -18,4 +18,7 @@ jobs:
     - name: Run Ansible playbook
       run: |
         ansible-playbook -i .github/workflows/inventory.ini .github/workflows/Tomcatpb.yml  
+      
+      env:
+        ANSIBLE_HOST_KEY_CHECKING: "False"  
 
