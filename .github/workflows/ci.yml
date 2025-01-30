@@ -26,10 +26,10 @@ jobs:
         cd /git-cloned
         mvn clean install -DskipTests  
 
-   # - name: Run Ansible playbook
-     # run: |
-       # ansible-playbook -i .github/workflows/inventory.ini .github/workflows/Tomcatpb.yml  
+    - name: Run Ansible playbook
+      run: |
+       ansible-playbook -i /ansible-playbook/inventory.ini /ansible-playbook/Tomcatpb.yml  
       
-      #env:
-        #ANSIBLE_HOST_KEY_CHECKING: "False"  
+      env:
+        ANSIBLE_HOST_KEY_CHECKING: "False"  
 
