@@ -18,7 +18,7 @@ jobs:
       
     - name: Clone the Git repository 
       run: |
-        git clone https://git@github.com:RPAAnubhav/java-ci-cd.git
+        git clone -b https://git@github.com:RPAAnubhav/java-ci-cd.git
         cd /git-cloned
 
     - name: Build with Maven
