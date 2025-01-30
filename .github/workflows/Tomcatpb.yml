@@ -34,8 +34,8 @@
         path: /git-cloned
         state: directory
         mode: '0755'
-        owner: "{{ ansible_user }}"   
-        group: "{{ ansible_user }}" 
+        owner: "server2"   
+        group: "server2" 
     
 
     - name: Clone Git repository
@@ -58,7 +58,7 @@
       command: pwd
       args:
         chdir: /POC
-      register: output
+        register: output
 
     - name: Run Maven build
       command: mvn clean install -DskipTests  
