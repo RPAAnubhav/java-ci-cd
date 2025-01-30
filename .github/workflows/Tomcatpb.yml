@@ -36,7 +36,7 @@
         state: directory
         mode: '0755'
         owner: "server2"  # Replace with a valid user on server2
-        group: "server2"  # Replace with a valid group on server2
+        group: "root"  # Replace with a valid group on server2
 
     - name: Clone Git repository
       git:
@@ -51,7 +51,7 @@
       file:
         path: /POC
         owner: "server2"  # Replace with a valid user on server2
-        group: "server2"  # Replace with a valid group on server2
+        group: "root"  # Replace with a valid group on server2
         mode: '0755'  
 
     - name: Change directory
@@ -71,8 +71,8 @@
     - name: Ensure correct permissions on WAR file in Tomcat webapps
       file:
         path: /var/lib/tomcat10/webapps/sample-project-0.0.1-SNAPSHOT.war
-        owner: root
-        group: root
+        owner: "server2"
+        group: "root"
         mode: '0644'  
 
     - name: Restart Tomcat to deploy the WAR file
