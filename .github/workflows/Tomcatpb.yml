@@ -34,8 +34,8 @@
         path: /git-cloned
         state: directory
         mode: '0755'
-        owner: server2   
-        group: server2  
+        owner: server1   
+        group: server1  
     
 
     - name: Clone Git repository
