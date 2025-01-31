@@ -30,6 +30,6 @@ jobs:
       run: |
        ansible-playbook -i /ansible-playbook/inventory.ini /ansible-playbook/Tomcatpb.yml  
       
-      env:
-        ANSIBLE_HOST_KEY_CHECKING: "False"  
+      #env:
+        #ANSIBLE_HOST_KEY_CHECKING: "False"  
 
