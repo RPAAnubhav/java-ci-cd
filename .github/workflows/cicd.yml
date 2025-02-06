@@ -1,0 +1,52 @@
+name: CI/CD for Tomcat 
+
+on:
+  push:
+    branches:
+      - DEV
+  pull_request:
+    branches:
+      - DEV
+
+jobs:
+  checkout:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+  build:
+    runs-on: self-hosted
+    needs: checkout  
+    steps:
+      
+      - name: Build with Maven
+        run: |
+          cd /actions-runner/_work/java-ci-cd/java-ci-cd
+          mvn clean install -DskipTests  
+
+      - name: Verify Maven build success
+        run: |
+          if [ ! -f target/*.war ]; then
+            echo "Build failed, no jar file found."
+            exit 1
+          fi
+          echo "Maven build successful, jar file found."
+
+  deploy:
+    runs-on: self-hosted
+    needs: build  
+    steps:
+            
+      - name: Run Ansible playbook
+        run: |
+          ansible-playbook -i /ansible-playbook/inventory.ini /ansible-playbook/Tomcatpb.yml
+
+      - name: Verify Ansible execution
+        run: |
+          if [ $? -eq 0 ]; then
+            echo "Ansible playbook executed successfully."
+          else
+            echo "Ansible playbook execution failed."
+            exit 1
+          fi
