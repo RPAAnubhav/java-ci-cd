@@ -29,10 +29,9 @@ jobs:
       # Step 5: Build and push Docker image to AWS ECR
       - name: Build, Tag, and Push Docker Image
         env:
-          AWS_REGION: us-east-1  # Change to your AWS region
+          AWS_REGION: ${{ secrets.AWS_REGION }}  # Change to your AWS region
           ECR_REPOSITORY: my-java-app  # Change to your ECR repo name
           AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
           
         run: |
           IMAGE_TAG=$(date +%Y%m%d%H%M%S)  # to generate a unique tag
