@@ -1,7 +1,7 @@
 trigger:
   - DEV  # Change this to 'main' if you want to trigger on main branch commits
 
-pool:
+pool: Default
   vmImage: AgentSelfHosted
 
 steps:
