@@ -7,7 +7,7 @@ pool:
     - Agent.Name -equals AgentSelfHosted  # Ensure the correct agent is selected
 
 steps:
-  - checkout: self
+  - checkout: self 
 
   - task: Maven@3
     displayName: 'Maven Build'
