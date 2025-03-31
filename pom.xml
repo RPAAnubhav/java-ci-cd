@@ -1,10 +1,14 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
   <modelVersion>4.0.0</modelVersion>
   <groupId>sample-project</groupId>
   <artifactId>sample-project</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>DEMO WAR</name>
+
   <build>
     <plugins>
       <plugin>
@@ -20,31 +24,31 @@
       </plugin>
     </plugins>
 
-    
     <repositories> 
-    <repository>
-  <id>QuestFeed</id>
-  <url>https://pkgs.dev.azure.com/Quest-Azure-DevOps/POC-2/_packaging/QuestFeed/maven/v1</url>
-  <releases>
-    <enabled>true</enabled>
-  </releases>
-  <snapshots>
-    <enabled>true</enabled>
-  </snapshots>
-</repository>
+      <repository>
+        <id>QuestFeed</id>
+        <url>https://pkgs.dev.azure.com/Quest-Azure-DevOps/POC-2/_packaging/QuestFeed/maven/v1</url>
+        <releases>
+          <enabled>true</enabled>
+        </releases>
+        <snapshots>
+          <enabled>true</enabled>
+        </snapshots>
+      </repository>
     </repositories> 
 
     <distributionManagement>
-    <repository>
-  <id>QuestFeed</id>
-  <url>https://pkgs.dev.azure.com/Quest-Azure-DevOps/POC-2/_packaging/QuestFeed/maven/v1</url>
-  <releases>
-    <enabled>true</enabled>
-  </releases>
-  <snapshots>
-    <enabled>true</enabled>
-  </snapshots>
-</repository>
+      <repository>
+        <id>QuestFeed</id>
+        <url>https://pkgs.dev.azure.com/Quest-Azure-DevOps/POC-2/_packaging/QuestFeed/maven/v1</url>
+        <releases>
+          <enabled>true</enabled>
+        </releases>
+        <snapshots>
+          <enabled>true</enabled>
+        </snapshots>
+      </repository>
     </distributionManagement>
   </build>
+
 </project>
