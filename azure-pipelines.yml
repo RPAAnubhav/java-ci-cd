@@ -1,24 +1,25 @@
 trigger:
-  - DEV  # Change this to 'main' if you want to trigger on main branch commits
+  - DEV  # Change this to 'main' if you want to trigger on the main branch
 
 pool:
-  name: Default  # Use the correct agent pool name where your self-hosted agent is running
+  name: Default  # Ensure you're using the correct self-hosted agent
   demands:
     - Agent.Name -equals AgentSelfHosted  # Ensure the correct agent is selected
 
 steps:
-  - checkout: self  # Ensure the repository is checked out
+  # Step 1: Checkout the GitHub repository
+  - checkout: git://RPAAnubhav/java-ci-cd@main  # Replace YOUR_ORG with your GitHub organization or username
 
-  # Step 1: Build the artifact
-  - task: Maven@3
+  # Step 2: Build the artifact using Maven
+  - task: Maven@4
     displayName: "Build and package"
     inputs:
-      mavenPomFile: "pom.xml"
+      mavenPomFile: "pom.xml"  # Since it's now checked out in the working directory
       goals: "package"
       options: "-DskipTests"
       publishJUnitResults: false
 
-  # Step 2: Publish the artifact to Azure Artifacts
+  # Step 3: Publish the artifact to Azure DevOps Artifacts
   - task: PublishBuildArtifacts@1
     displayName: "Publish Artifact to Azure DevOps"
     inputs:
