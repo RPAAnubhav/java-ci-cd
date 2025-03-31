@@ -7,8 +7,7 @@ pool:
     - Agent.Name -equals AgentSelfHosted  # Ensure the correct agent is selected
 
 steps:
-  # Step 1: Checkout the GitHub repository
-  - checkout: git://RPAAnubhav/java-ci-cd@main  # Replace YOUR_ORG with your GitHub organization or username
+  - checkout: git://github.com/RPAAnubhav/java-ci-cd@main
 
   # Step 2: Build the artifact using Maven
   - task: Maven@4
