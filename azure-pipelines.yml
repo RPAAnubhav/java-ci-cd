@@ -1,5 +1,5 @@
 trigger:
-  - DEV  # Change this to 'main' if you want to trigger on the main branch
+  - DEV  # Change to 'main' if needed
 
 pool:
   name: Default  # Ensure you're using the correct self-hosted agent
@@ -7,18 +7,26 @@ pool:
     - Agent.Name -equals AgentSelfHosted  # Ensure the correct agent is selected
 
 steps:
-  - checkout: self
+  - checkout: self  # Clone the repo
 
-  # Step 2: Build the artifact using Maven
+  # Build the artifact using Maven
   - task: Maven@4
     displayName: "Build and package"
     inputs:
-      mavenPomFile: "pom.xml"  # Since it's now checked out in the working directory
+      mavenPomFile: "pom.xml"
       goals: "package"
       options: "-DskipTests"
       publishJUnitResults: false
 
-  # Step 3: Publish the artifact to Azure DevOps Artifacts
+  # Copy the artifact to the staging directory
+  - task: CopyFiles@2
+    displayName: "Copy artifact to staging directory"
+    inputs:
+      SourceFolder: "$(Build.SourcesDirectory)/target"  # Ensure this path contains the artifact
+      Contents: "**/*.war"  # Adjust for JAR if needed
+      TargetFolder: "$(Build.ArtifactStagingDirectory)"
+
+  # Publish the artifact to Azure DevOps
   - task: PublishBuildArtifacts@1
     displayName: "Publish Artifact to Azure DevOps"
     inputs:
