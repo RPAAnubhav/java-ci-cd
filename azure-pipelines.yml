@@ -7,12 +7,21 @@ pool:
     - Agent.Name -equals AgentSelfHosted  # Ensure the correct agent is selected
 
 steps:
-  - checkout: self  # Fixed incorrect indentation
+  - checkout: self  # Ensure the repository is checked out
 
-  - task: Docker@2
-    displayName: Build an image
+  # Step 1: Build the artifact
+  - task: Maven@3
+    displayName: "Build and package"
     inputs:
-      command: build
-      dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-      tags: |
-        $(tag)
+      mavenPomFile: "pom.xml"
+      goals: "package"
+      options: "-DskipTests"
+      publishJUnitResults: false
+
+  # Step 2: Publish the artifact to Azure Artifacts
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish Artifact to Azure DevOps"
+    inputs:
+      pathToPublish: "$(Build.ArtifactStagingDirectory)"
+      artifactName: "drop"
+      publishLocation: "Container"
