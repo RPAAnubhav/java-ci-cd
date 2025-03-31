@@ -30,6 +30,7 @@ steps:
   - task: PublishBuildArtifacts@1
     displayName: "Publish Artifact to Azure DevOps"
     inputs:
-      pathToPublish: "$(Build.ArtifactStagingDirectory)"
-      artifactName: "drop"
-      publishLocation: "Container"
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
+      StoreAsTar: true
