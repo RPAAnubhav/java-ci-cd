@@ -9,6 +9,32 @@
   <packaging>war</packaging>
   <name>DEMO WAR</name>
 
+  <repositories> 
+    <repository>
+      <id>QuestFeed</id>
+      <url>https://pkgs.dev.azure.com/Quest-Azure-DevOps/POC-2/_packaging/QuestFeed/maven/v1</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories> 
+
+  <distributionManagement>
+    <repository>
+      <id>QuestFeed</id>
+      <url>https://pkgs.dev.azure.com/Quest-Azure-DevOps/POC-2/_packaging/QuestFeed/maven/v1</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </distributionManagement>
+
   <build>
     <plugins>
       <plugin>
@@ -23,32 +49,6 @@
         <version>3.2.3</version>
       </plugin>
     </plugins>
-
-    <repositories> 
-      <repository>
-        <id>QuestFeed</id>
-        <url>https://pkgs.dev.azure.com/Quest-Azure-DevOps/POC-2/_packaging/QuestFeed/maven/v1</url>
-        <releases>
-          <enabled>true</enabled>
-        </releases>
-        <snapshots>
-          <enabled>true</enabled>
-        </snapshots>
-      </repository>
-    </repositories> 
-
-    <distributionManagement>
-      <repository>
-        <id>QuestFeed</id>
-        <url>https://pkgs.dev.azure.com/Quest-Azure-DevOps/POC-2/_packaging/QuestFeed/maven/v1</url>
-        <releases>
-          <enabled>true</enabled>
-        </releases>
-        <snapshots>
-          <enabled>true</enabled>
-        </snapshots>
-      </repository>
-    </distributionManagement>
   </build>
 
 </project>
