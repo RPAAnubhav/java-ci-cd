@@ -1,13 +1,13 @@
 trigger:
-  - DEV  # Change to 'main' if needed
+  - DEV  
 
 pool:
-  name: Default  # Ensure you're using the correct self-hosted agent
+  name: Default  
   demands:
-    - Agent.Name -equals AgentSelfHosted  # Ensure the correct agent is selected
+    - Agent.Name -equals AgentSelfHosted  
 
 steps:
-  - checkout: self  # Clone the repo
+  - checkout: self  
 
   # Build the artifact using Maven
   - task: Maven@4
