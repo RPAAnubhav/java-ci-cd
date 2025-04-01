@@ -11,8 +11,8 @@
 
   <repositories> 
     <repository>
-      <id>QuestFeed</id>
-      <url>https://pkgs.dev.azure.com/Quest-Azure-DevOps/POC-2/_packaging/QuestFeed/maven/v1v1</url>
+      <id>Azure1feed</id>
+      <url>https://pkgs.dev.azure.com/Quest-Azure-DevOps/_packaging/Azure1feed/maven/v1</url>
       <releases>
         <enabled>true</enabled>
       </releases>
@@ -24,8 +24,8 @@
 
   <distributionManagement>
     <repository>
-      <id>QuestFeed</id>
-      <url>https://pkgs.dev.azure.com/Quest-Azure-DevOps/POC-2/_packaging/QuestFeed/maven/v1</url>
+      <id>Azure1feed</id>
+      <url>https://pkgs.dev.azure.com/Quest-Azure-DevOps/_packaging/Azure1feed/maven/v1</url>
       <releases>
         <enabled>true</enabled>
       </releases>
